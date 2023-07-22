@@ -19,5 +19,11 @@ function createSquares() {
     })
 }
 
+function createGrid(numOfRows) {
+    for (let i=1; i <= numOfRows; i++) {
+        createSquares();
+    }
+}
+
 createRows(16);
-createSquares();
+createGrid(16);
