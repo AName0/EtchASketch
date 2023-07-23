@@ -19,7 +19,7 @@ function createSquares(gridSize) {
         let square = document.createElement("div");
         square.className = "square";
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "green";
+            square.style.backgroundColor = generateRandomColor();
         })
         square.style.height = length + "px";
         square.style.width = length + "px";
@@ -43,6 +43,15 @@ function changeGridSize() {
         container.innerHTML = "";
         createGrid(gridSize)
     }
+}
+
+function generateRandomColor() {
+    let RGB1 = Math.floor(Math.random() * 256);
+    let RGB2 = Math.floor(Math.random() * 256);
+    let RGB3 = Math.floor(Math.random() * 256);
+    let randomColor = "rgb(" + RGB1 + ", " + RGB2 + ", " + RGB3 + ")";
+    console.log(randomColor);
+    return randomColor;
 }
 
 createGrid(16);
