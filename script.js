@@ -1,5 +1,7 @@
-// script that will create a 16x16 grid of divs
 const container = document.querySelector(".container");
+
+const gridSizeButton = document.querySelector("#gridSizeButton")
+gridSizeButton.addEventListener("click", () => changeGridSize())
 
 function createRows(numOfRows) {
     for (let i = 1; i <= numOfRows; i++) {
@@ -35,8 +37,12 @@ function createGrid(gridSize) {
 function changeGridSize() {
     let gridSize = prompt("Type in a number from 4 to 100");
     if (gridSize < 4 || gridSize > 100) {
-        return ("Error: Grid size invalid")
+        alert("Error: Grid size invalid")
+        return;
     } else {
+        container.innerHTML = "";
         createGrid(gridSize)
     }
 }
+
+createGrid(16);
