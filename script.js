@@ -18,7 +18,7 @@ function createSquares(gridSize) {
     rows.forEach((row) => {
         let square = document.createElement("div");
         square.className = "square";
-        square.addEventListener("mousedown", () => {
+        square.addEventListener("mouseover", () => {
             square.style.backgroundColor = generateRandomColor();
         })
         square.style.height = length + "px";
