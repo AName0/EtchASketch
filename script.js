@@ -16,14 +16,15 @@ function createSquares() {
         let square = document.createElement("div");
         square.className = "square";
         square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = "green";
+            square.style.backgroundColor = "green"
         })
         row.appendChild(square);
     })
 }
 
-function createGrid(numOfRows) {
-    for (let i=1; i <= numOfRows; i++) {
+function createGrid(num) {
+    createRows(num);
+    for (let i=1; i <= num; i++) {
         createSquares();
     }
 }
@@ -32,5 +33,4 @@ function changeSquareColor() {
     
 }
 
-createRows(16);
 createGrid(16);
