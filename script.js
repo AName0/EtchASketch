@@ -15,6 +15,9 @@ function createSquares() {
     rows.forEach((row) => {
         let square = document.createElement("div");
         square.className = "square";
+        square.addEventListener("mouseover", () => {
+            square.style.backgroundColor = "green";
+        })
         row.appendChild(square);
     })
 }
@@ -23,6 +26,10 @@ function createGrid(numOfRows) {
     for (let i=1; i <= numOfRows; i++) {
         createSquares();
     }
+}
+
+function changeSquareColor() {
+    
 }
 
 createRows(16);
