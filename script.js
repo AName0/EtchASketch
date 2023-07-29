@@ -51,11 +51,9 @@ function generateRandomColor() {
     let RGB2 = Math.floor(Math.random() * 256);
     let RGB3 = Math.floor(Math.random() * 256);
     let randomColor = "rgb(" + RGB1 + ", " + RGB2 + ", " + RGB3 + ")";
-    console.log(randomColor);
     return randomColor;
 }
 
-<<<<<<< HEAD
 function randomDraw(e) {
     e.target.style.backgroundColor = generateRandomColor();
 }
@@ -79,6 +77,3 @@ document.body.addEventListener("mouseup", () => {
 })
 
 createGrid(16);
-=======
-createGrid(16);
->>>>>>> 9bdae312000ee84c2c00b285d3b68fbb2b9b37b7
