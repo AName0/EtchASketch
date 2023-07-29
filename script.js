@@ -1,4 +1,6 @@
 const container = document.querySelector(".container");
+let currentGridSize = 0;
+let squares;
 
 const gridSizeButton = document.querySelector("#gridSizeButton")
 gridSizeButton.addEventListener("click", () => changeGridSize())
@@ -18,9 +20,6 @@ function createSquares(gridSize) {
     rows.forEach((row) => {
         let square = document.createElement("div");
         square.className = "square";
-        square.addEventListener("mouseover", () => {
-            square.style.backgroundColor = generateRandomColor();
-        })
         square.style.height = length + "px";
         square.style.width = length + "px";
         row.appendChild(square);
@@ -28,10 +27,12 @@ function createSquares(gridSize) {
 }
 
 function createGrid(gridSize) {
+    currentGridSize = gridSize;
     createRows(gridSize);
     for (let i=1; i <= gridSize; i++) {
         createSquares(gridSize);
     }
+    squares = document.querySelectorAll(".square");
 }
 
 function changeGridSize() {
@@ -53,5 +54,27 @@ function generateRandomColor() {
     console.log(randomColor);
     return randomColor;
 }
+
+function randomDraw(e) {
+    e.target.style.backgroundColor = generateRandomColor();
+}
+
+document.body.addEventListener("mousedown", () => {
+    for (let i=1; i <= currentGridSize; i++) {
+        squares.forEach((square) => {
+            square.addEventListener("mouseover", randomDraw);
+        })
+    }
+    console.log("mousedown");
+})
+
+document.body.addEventListener("mouseup", () => {
+    for (let i=1; i <= currentGridSize; i++) {
+        squares.forEach((square) => {
+            square.removeEventListener("mouseover", randomDraw)
+        })
+    }
+    console.log("mouseup");
+})
 
 createGrid(16);
