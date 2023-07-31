@@ -1,9 +1,13 @@
 const container = document.querySelector(".container");
 let currentGridSize = 0;
 let squares;
+let eraser = false;
 
 const gridSizeButton = document.querySelector("#gridSizeButton")
 gridSizeButton.addEventListener("click", () => changeGridSize())
+
+const eraserButton = document.querySelector("#eraser")
+eraserButton.addEventListener("click", () => eraserToggle())
 
 function createRows(numOfRows) {
     for (let i = 1; i <= numOfRows; i++) {
@@ -42,8 +46,20 @@ function changeGridSize() {
         return;
     } else {
         container.innerHTML = "";
-        createGrid(gridSize)
+        createGrid(gridSize);
     }
+}
+
+function eraserToggle() {
+    if (eraser === false) {
+        eraser = true;
+    } else {
+        eraser = false;
+    }
+}
+
+function eraseColor(e) {
+    e.target.style.backgroundColor = "rgb(255, 255, 255)";
 }
 
 function generateRandomColor() {
@@ -59,19 +75,35 @@ function randomDraw(e) {
 }
 
 document.body.addEventListener("mousedown", () => {
-    for (let i=1; i <= currentGridSize; i++) {
-        squares.forEach((square) => {
-            square.addEventListener("mouseover", randomDraw);
-        })
+    if (eraser === true) {
+        for (let i=1; i <= currentGridSize; i++) {
+            squares.forEach((square) => {
+                square.addEventListener("mouseover", eraseColor);
+            })
+        }
+    } else {
+        for (let i=1; i <= currentGridSize; i++) {
+            squares.forEach((square) => {
+                square.addEventListener("mouseover", randomDraw);
+            })
+        }
     }
     console.log("mousedown");
 })
 
 document.body.addEventListener("mouseup", () => {
-    for (let i=1; i <= currentGridSize; i++) {
-        squares.forEach((square) => {
-            square.removeEventListener("mouseover", randomDraw)
-        })
+    if (eraser === true) {
+        for (let i=1; i <= currentGridSize; i++) {
+            squares.forEach((square) => {
+                square.removeEventListener("mouseover", eraseColor);
+            })
+        }
+    } else {
+        for (let i=1; i <= currentGridSize; i++) {
+            squares.forEach((square) => {
+                square.removeEventListener("mouseover", randomDraw);
+            })
+        }
     }
     console.log("mouseup");
 })
